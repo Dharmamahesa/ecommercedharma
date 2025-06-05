@@ -53,3 +53,16 @@ $route['login'] = 'auth/index';
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+// Mengarahkan produk/keranjang ke members/keranjang
+$route['produk/keranjang'] = 'members/keranjang';
+// Jika method keranjang di Members.php menerima parameter, tambahkan juga route untuk itu:
+$route['produk/keranjang/(:any)'] = 'members/keranjang/$1';
+$route['produk/keranjang/(:any)/(:any)'] = 'members/keranjang/$1/$2';
+$route['produk/keranjang/(:any)/(:any)/(:any)'] = 'members/keranjang/$1/$2/$3'; // Tambahkan jika ada parameter ketiga seperti 'from_list'
+
+// Pastikan juga route untuk aksi lain di keranjang (jika ada di Produk.php sebelumnya) diarahkan ke Members.php
+$route['produk/keranjang_delete/(:any)'] = 'members/keranjang_delete/$1';
+$route['produk/selesai_belanja'] = 'members/selesai_belanja';
+$route['produk/batalkan_transaksi'] = 'members/batalkan_transaksi';
+// Tambahkan juga untuk method AJAX ongkir jika Anda memindahkannya atau ingin diakses via /produk
+$route['produk/cek_ongkir'] = 'members/cek_ongkir'; // atau nama method AJAX ongkir Anda di Members.php

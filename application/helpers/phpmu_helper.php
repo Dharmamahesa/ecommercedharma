@@ -63,3 +63,38 @@ if (!function_exists('cek_session_user')) {
         }
     }
 }
+if (!function_exists('template')) {
+    /**
+     * Mengembalikan nama direktori template aktif.
+     * Anda bisa mengambil nilai ini dari database (tabel identitas atau pengaturan)
+     * atau dari file konfigurasi CodeIgniter.
+     * Untuk contoh ini, kita akan menggunakan nilai default atau mengambil dari config.
+     */
+    function template() {
+        $CI =& get_instance();
+
+        // Opsi 1: Ambil dari item konfigurasi (lebih fleksibel)
+        // Anda bisa menambahkan $config['theme_directory'] = 'nama_folder_template_anda'; di application/config/config.php
+        $active_template_dir = $CI->config->item('theme_directory');
+        if ($active_template_dir) {
+            return $active_template_dir;
+        }
+
+        // Opsi 2: Ambil dari database (misalnya tabel tb_identitas jika ada kolom untuk template)
+        // Contoh jika Anda menambahkan kolom 'folder_template' di tb_identitas:
+        /*
+        $identitas = $CI->db->get_where('tb_identitas', array('id_identitas' => 1))->row_array();
+        if (isset($identitas['folder_template']) && !empty($identitas['folder_template'])) {
+            return $identitas['folder_template'];
+        }
+        */
+
+        // Opsi 3: Nilai default jika tidak ada konfigurasi atau data di database
+        // Sesuaikan 'phpmu-one' dengan nama folder template default Anda di application/views/
+        // Berdasarkan PDF, sering disebut 'phpmu-one' atau path dinamis lainnya.
+        // Jika view login member Anda ada di application/views/template_frontend/view_login_member.php
+        // dan template utamanya di application/views/template_frontend/template.php,
+        // maka fungsi ini bisa mengembalikan 'template_frontend'.
+        return 'phpmu-one'; // GANTI DENGAN NAMA DIREKTORI TEMPLATE DEFAULT ANDA
+    }
+}

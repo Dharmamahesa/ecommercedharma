@@ -146,7 +146,7 @@ $title_page_login = isset($title) ? $title : 'Administrator Login';
             <div class="login-header">
                 <?php
                 // Anda bisa menambahkan logo di sini jika ada
-                // Contoh: <img src="<?php echo base_url('asset/logo_admin.png'); ?>" alt="Logo Admin" class="logo">
+                // Contoh: <img src="<?php echo base_url('asset/logo_admin.png'); 
                 ?>
                 <h2>Selamat Datang!</h2>
                 <p>Login ke <?php echo htmlspecialchars($website_name_login); ?></p>
